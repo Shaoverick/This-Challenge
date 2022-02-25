@@ -1,6 +1,6 @@
 package com.example.di
 
-import com.example.data.dataSource.remoteDataSource.GitHubRepoRemoteDataSource
+import com.example.data.repository.GitHubRepoRepository
 import com.example.domain.model.entity.RepoEntity
 import com.example.domain.useCase.UseCase
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListParams
@@ -18,9 +18,9 @@ object UseCaseModule {
     @Singleton
     @Provides
     fun providesGitHubRepoUCModule(
-        gitHubRepoDataSource: GitHubRepoRemoteDataSource
+        gitHubRepoDataSource: GitHubRepoRepository
     ): UseCase<GetUserRepoListParams, List<RepoEntity>> {
-        return GetUserRepoListUC(gitHubRepoDataSource)
+        return GetUserRepoListUC()
     }
 
 }

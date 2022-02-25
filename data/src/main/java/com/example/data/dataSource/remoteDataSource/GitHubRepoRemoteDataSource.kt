@@ -6,15 +6,11 @@ import com.example.domain.dataSource.IGitHubRepoDataSource
 import com.example.domain.model.entity.RepoEntity
 import javax.inject.Inject
 
+//This data source is used to get data from GitHub Api through Retrofit client
 class GitHubRepoRemoteDataSource @Inject constructor(
     var service: GitHubRepoService,
     var mapper: GitHubRepoMapper
 ) : IGitHubRepoDataSource {
-
-    //region PROPERTIES ----------------------------------------------------------------------------
-//    @Inject lateinit
-    //endregion
-
 
     //region PUBLIC METHODS ------------------------------------------------------------------------
     override suspend fun getGitHubRepoList(userName: String, itemsPerPage: Int, page: Int): List<RepoEntity> {
