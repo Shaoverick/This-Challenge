@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.passporter.databinding.FragmentFirstBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class RepositoryListFragment : Fragment() {
+@AndroidEntryPoint
+class RepoListFragment : Fragment() {
 
     //region PROPERTIES ----------------------------------------------------------------------------
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: RepoListVM by viewModels()
     //endregion
 
 
@@ -27,6 +32,7 @@ class RepositoryListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getRepoList(1)
     }
 
     override fun onDestroyView() {

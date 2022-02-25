@@ -1,33 +1,33 @@
 package com.example.domain.common
 
-interface ApiMapper<Model, ApiModel> {
+interface ApiMapper<Entity, ApiModel> {
 
-    fun toModel(entity: ApiModel?): Model?
+    fun toEntity(apiModel: ApiModel?): Entity?
 
-    fun toApiModel(model: Model?): ApiModel?
+    fun toApiModel(entity: Entity?): ApiModel?
 
-    fun toModelList(entityList: List<ApiModel>): List<Model> {
-        val modelList = ArrayList<Model>()
+    fun toEntityList(apiModelList: List<ApiModel>): List<Entity> {
+        val entityList = ArrayList<Entity>()
 
-        entityList.forEach { entity: ApiModel ->
-            val model: Model? = toModel(entity)
-            if (model != null)
-                modelList.add(model)
+        apiModelList.forEach { apiModel: ApiModel ->
+            val entity: Entity? = toEntity(apiModel)
+            if (entity != null)
+                entityList.add(entity)
         }
 
-        return modelList
+        return entityList
     }
 
-    fun toApiModelList(apiModelList: List<Model>): List<ApiModel> {
-        val roomEntityList = ArrayList<ApiModel>()
+    fun toApiModelList(entityList: List<Entity>): List<ApiModel> {
+        val apiModelList = ArrayList<ApiModel>()
 
-        apiModelList.forEach { model: Model ->
-            val entity: ApiModel? = toApiModel(model)
-            if (entity != null)
-                roomEntityList.add(entity)
+        entityList.forEach { entity: Entity ->
+            val apiModel: ApiModel? = toApiModel(entity)
+            if (apiModel != null)
+                apiModelList.add(apiModel)
         }
 
-        return roomEntityList
+        return apiModelList
     }
 
 }
