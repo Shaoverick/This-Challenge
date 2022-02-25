@@ -1,4 +1,4 @@
-package com.example.passporter
+package com.example.passporter.view.repositoryList
 
 import android.os.Bundle
 import android.view.LayoutInflater

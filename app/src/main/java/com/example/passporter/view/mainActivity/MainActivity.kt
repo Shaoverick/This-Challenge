@@ -1,10 +1,11 @@
-package com.example.passporter
+package com.example.passporter.view.mainActivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.passporter.R
 import com.example.passporter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
