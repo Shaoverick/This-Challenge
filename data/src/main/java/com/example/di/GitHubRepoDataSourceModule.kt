@@ -1,6 +1,9 @@
 package com.example.di
 
 import com.example.data.dataSource.remoteDataSource.GitHubRepoRemoteDataSource
+import com.example.data.repository.GitHubRepoRepository
+import com.example.domain.di.RemoteDataSource
+import com.example.domain.di.Repository
 import com.example.domain.dataSource.IGitHubRepoDataSource
 import dagger.Binds
 import dagger.Module
@@ -12,11 +15,14 @@ import javax.inject.Singleton
 @Module
 abstract class GitHubRepoDataSourceModule {
 
-//    @Qualifier
-//    annotation class RemoteDataSource
-
+    @RemoteDataSource
     @Singleton
     @Binds
-    abstract fun bindGitHubRepoDataSourceModule(impl: GitHubRepoRemoteDataSource): IGitHubRepoDataSource
+    abstract fun bindGitHubRepoRemoteDataSource(impl: GitHubRepoRemoteDataSource): IGitHubRepoDataSource
+
+    @Repository
+    @Singleton
+    @Binds
+    abstract fun bindGitHubRepoRepository(impl: GitHubRepoRepository): IGitHubRepoDataSource
 
 }

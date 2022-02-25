@@ -1,21 +1,29 @@
 package com.example.domain.useCase.gitHubRepo
 
+import com.example.domain.di.Repository
 import com.example.domain.dataSource.IGitHubRepoDataSource
 import com.example.domain.model.entity.RepoEntity
 import com.example.domain.useCase.UseCase
 import javax.inject.Inject
 
-class GetUserRepoListUC @Inject constructor(
-    var gitHubRepoDataSource: IGitHubRepoDataSource
-): UseCase<GetUserRepoListParams, List<RepoEntity>>() {
+//Use case to get paginated GitHub repo list of the chosen user defined by userName parameter
+class GetUserRepoListUC @Inject constructor(): UseCase<GetUserRepoListParams, List<RepoEntity>>() {
 
+    //region PROPERTIES ----------------------------------------------------------------------------
+    @Repository
+    @Inject lateinit var gitHubRepoRepository: IGitHubRepoDataSource
+    //endregion
+
+
+    //region PUBLIC METHODS ------------------------------------------------------------------------
     override suspend fun call(params: GetUserRepoListParams): List<RepoEntity> {
-        return gitHubRepoDataSource.getGitHubRepoList(
+        return gitHubRepoRepository.getGitHubRepoList(
             userName = params.userName,
             itemsPerPage = params.itemsPerPage,
             page = params.page
         )
     }
+    //endregion
 
 }
 
