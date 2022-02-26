@@ -19,7 +19,7 @@ class CommonRequestInterceptor: Interceptor {
         val original = chain.request()
 
         val builder: Request.Builder = original.newBuilder()
-            .header("access_token", token)
+            .addHeader("Authorization", "Bearer $token")
             .method(original.method, original.body)
 
         return chain.proceed(builder.build())
