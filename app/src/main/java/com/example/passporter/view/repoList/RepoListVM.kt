@@ -8,6 +8,7 @@ import com.example.domain.model.entity.OwnerEntity
 import com.example.domain.model.entity.RepoEntity
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListParams
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListUC
+import com.example.passporter.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,14 +21,18 @@ class RepoListVM @Inject constructor(
 ) : ViewModel() {
 
     companion object {
+        //This properties should not be stored here
         private const val USER_NAME = "shaoverick"
         private const val ITEMS_PER_PAGE = 10
     }
 
 
     //region PROPERTIES ----------------------------------------------------------------------------
-    private val _repoList = MutableLiveData<List<RepoEntity>>()
-    val repoList: LiveData<List<RepoEntity>> = _repoList
+    private val _repoList = MutableLiveData<Event<List<RepoEntity>>>()
+    val repoList: LiveData<Event<List<RepoEntity>>> = _repoList
+
+    private val _apiCallError = MutableLiveData<Event<String>>()
+    val apiCallError: LiveData<Event<String>> = _apiCallError
 
     private var page = 0
     //endregion
@@ -43,7 +48,7 @@ class RepoListVM @Inject constructor(
         page++
 
         viewModelScope.launch {
-            val result: List<RepoEntity> = withContext(Dispatchers.IO) {
+            val result = withContext(Dispatchers.IO) {
                 getUserRepoListUC.execute(
                     GetUserRepoListParams(
                         userName = USER_NAME,
@@ -51,10 +56,17 @@ class RepoListVM @Inject constructor(
                         page = page
                     )
                 )
-            }.peekSuccessOrNull() ?: arrayListOf()
+            }
 
-            _repoList.postValue(result)
-//            _repoList.postValue(mock())
+            result.peekSuccessOrNull()?.let {
+                _repoList.postValue(Event(it))
+            }
+
+            result.peekFailureOrNull()?.let {
+                _apiCallError.postValue(Event(it.message ?: "Network error"))
+            }
+
+//            _repoList.postValue(Event(mock()))
         }
     }
     //endregion
@@ -67,9 +79,11 @@ class RepoListVM @Inject constructor(
             description = "descripción del repo",
             ownerEntity = OwnerEntity(
                 login = "Míguel",
-                avatarUrl = null
+                avatarUrl = null,
+                htmlUrl = "http://www.google.com"
             ),
-            fork = true
+            fork = true,
+            htmlUrl = "http://www.google.com"
         ))
     }
 

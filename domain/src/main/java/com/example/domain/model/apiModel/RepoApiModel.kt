@@ -6,11 +6,15 @@ data class RepoApiModel(
     @SerializedName("name")         val name: String,
     @SerializedName("description")  val description: String?,
     @SerializedName("owner")        val owner: Owner,
-    @SerializedName("fork")         val fork: Boolean
+    @SerializedName("fork")         val fork: Boolean,
+    @SerializedName("html_url")     val htmlUrl: String
+
 )
 
 
 data class Owner(
     @SerializedName("login")        val login: String,
-    @SerializedName("avatar_url")   val avatarUrl: String?
+    @SerializedName("avatar_url")   val avatarUrl: String?,
+    @SerializedName("html_url")     val htmlUrl: String
+
 )

@@ -2,7 +2,6 @@
 
     <style name="text">
         <item name="android:textSize">18sp</item>
-        <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
@@ -21,7 +20,11 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="web_option" parent="text">
+        <item name="android:layout_margin">16dp</item>
     </style>
 
 </resources>

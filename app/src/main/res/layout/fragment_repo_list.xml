@@ -25,8 +25,7 @@
             android:id="@+id/rvRepoList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:addRepoList="@{repoListVM.repoList}"
-            app:setAdapter="@{repoListRVAdapter}" />
+            app:addRepoList="@{repoListVM.repoList.peekContent()}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
