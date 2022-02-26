@@ -22,7 +22,8 @@ class GitHubRepoMapper @Inject constructor(): ApiMapper<RepoEntity, RepoApiModel
                 name = apiModel.name,
                 description = apiModel.description,
                 ownerEntity = ownerMapper.toEntity(apiModel.owner) ?: throw ParseException(),
-                fork = apiModel.fork
+                fork = apiModel.fork,
+                htmlUrl = apiModel.htmlUrl
             )
         else
             null
@@ -44,7 +45,8 @@ class OwnerMapper @Inject constructor(): ApiMapper<OwnerEntity, Owner> {
         return if (apiModel != null)
             OwnerEntity(
                 login = apiModel.login,
-                avatarUrl = apiModel.avatarUrl
+                avatarUrl = apiModel.avatarUrl,
+                htmlUrl = apiModel.htmlUrl
             )
         else
             null
@@ -54,7 +56,8 @@ class OwnerMapper @Inject constructor(): ApiMapper<OwnerEntity, Owner> {
         return if (entity != null)
             Owner(
                 login = entity.login,
-                avatarUrl = entity.avatarUrl
+                avatarUrl = entity.avatarUrl,
+                htmlUrl = entity.htmlUrl
             )
         else
             null

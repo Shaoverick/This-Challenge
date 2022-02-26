@@ -1,5 +1,7 @@
 package com.example.passporter.view.repoList
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.entity.UrlString
+import com.example.passporter.EventObserver
 import com.example.passporter.databinding.FragmentRepoListBinding
 import com.example.passporter.view.repoList.adapter.RepoRVAdapter
+import com.example.passporter.view.repoList.dialog.WebChooserDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,14 +35,18 @@ class RepoListFragment : Fragment() {
         _binding = FragmentRepoListBinding.inflate(inflater, container, false)
 
         //Binding fragment to xml
-        binding.repoListVM = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.apply {
+            repoListVM = viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setApiCallErrorObserver()
 
         setLayout()
     }
@@ -52,7 +61,7 @@ class RepoListFragment : Fragment() {
     //region EVENTS -----------------------------------------------------------------------------
     private val adapterListener = object : RepoRVAdapter.RepoListener {
         override fun onLongClick(repoEntity: RepoEntity) {
-            Toast.makeText(requireContext() ,"Clicked", Toast.LENGTH_LONG).show()
+            showWebChooserDialog(repoEntity)
         }
     }
 
@@ -64,6 +73,23 @@ class RepoListFragment : Fragment() {
                 viewModel.getRepoListPage()
         }
     }
+
+    private val onWebChooserDialogItemClick: (UrlString) -> Unit = { urlString ->
+        kotlin.runCatching {
+            launchWebIntent(urlString)
+        }.onFailure {
+            showErrorToast("Page not found")
+        }
+    }
+    //endregion
+
+
+    //region OBSERVERS -----------------------------------------------------------------------------
+    private fun setApiCallErrorObserver() {
+        viewModel.apiCallError.observe(viewLifecycleOwner, EventObserver { errorText ->
+            showErrorToast(errorText)
+        })
+    }
     //endregion
 
 
@@ -74,6 +100,23 @@ class RepoListFragment : Fragment() {
             adapter = RepoRVAdapter(mutableListOf(), adapterListener)
             addOnScrollListener(onRepoRVScrollBottom)
         }
+    }
+
+    private fun showWebChooserDialog(repoEntity: RepoEntity) {
+        WebChooserDialog.newInstance(
+            repoEntity = repoEntity,
+            onWebChooserDialogItemClick = onWebChooserDialogItemClick
+        ).show(requireActivity().supportFragmentManager, WebChooserDialog::class.simpleName)
+    }
+
+    private fun launchWebIntent(urlString: UrlString) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(urlString)
+        startActivity(intent)
+    }
+
+    private fun showErrorToast(errorText: String) {
+        Toast.makeText(requireContext(), errorText, Toast.LENGTH_LONG).show()
     }
     //endregion
 
