@@ -25,6 +25,7 @@
             android:id="@+id/rvRepoList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/recyclerview_background"
             app:addRepoList="@{repoListVM.repoList.peekContent()}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

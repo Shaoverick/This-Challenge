@@ -48,7 +48,7 @@ class RepoRVAdapter(
             binding.repoEntity = repoEntity
             binding.listener = repoListener
 
-            val colorResourceId = if (repoEntity.fork) R.color.teal_200 else R.color.white
+            val colorResourceId = if (repoEntity.fork) R.color.card_light_green else R.color.white
             binding.cardRepo.setCardBackgroundColor(binding.root.context.resources.getColor(colorResourceId))
         }
     }

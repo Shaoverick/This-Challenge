@@ -3,7 +3,6 @@ package com.example.data.dataSource.remoteDataSource
 import com.example.client.NetworkDeferred
 import com.example.domain.model.apiModel.RepoApiModel
 import retrofit2.http.GET
-import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 

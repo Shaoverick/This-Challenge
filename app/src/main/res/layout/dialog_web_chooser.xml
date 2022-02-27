@@ -8,11 +8,10 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvWebTitle"
-        style="@style/web_option"
+        style="@style/web_option_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select where you will to go"
-        android:textSize="12sp"
+        android:text="@string/select_where_you_will_to_go"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +21,7 @@
         style="@style/web_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Html url"
+        android:text="@string/view_html_url"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWebTitle"/>
@@ -32,7 +31,7 @@
         style="@style/web_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Html Owner url"
+        android:text="@string/view_html_owner_url"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
