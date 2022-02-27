@@ -30,11 +30,10 @@
 
             <ImageView
                 android:id="@+id/image_view_movie_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="fitXY"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="@+id/tvOwnerName"
-                app:layout_constraintDimensionRatio="H, 1:0.7"
                 app:layout_constraintStart_toStartOf="@+id/tvDescription"
                 app:layout_constraintTop_toTopOf="@+id/tvOwnerName"
                 app:setImage="@{repoEntity.ownerEntity.avatarUrl}"
@@ -68,6 +67,7 @@
                 style="@style/text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@{repoEntity.description}"
                 app:layout_constraintStart_toStartOf="@+id/tvName"

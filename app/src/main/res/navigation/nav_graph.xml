@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.passporter.view.repoList.RepoListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/screen_label"
         tools:layout="@layout/fragment_repo_list">
     </fragment>
 

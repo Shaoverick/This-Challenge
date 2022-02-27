@@ -79,8 +79,8 @@ class RepoListVM @Inject constructor(
             description = "descripción del repo",
             ownerEntity = OwnerEntity(
                 login = "Míguel",
-                avatarUrl = null,
-                htmlUrl = "http://www.google.com"
+                avatarUrl = "https://avatars.githubusercontent.com/u/25582459?s=400&u=fb0b79769f9ba6ff8e01cf4c898e05e2b6ff2a7d&v=4",
+                htmlUrl = "http://www.google.com",
             ),
             fork = true,
             htmlUrl = "http://www.google.com"
