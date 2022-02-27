@@ -1,7 +1,7 @@
 package com.example.di
 
 import com.example.data.repository.GitHubRepoRepository
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.RepoEntity
 import com.example.domain.useCase.UseCase
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListParams
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListUC

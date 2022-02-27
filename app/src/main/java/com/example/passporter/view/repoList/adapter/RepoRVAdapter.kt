@@ -4,7 +4,7 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.RepoEntity
 import com.example.passporter.R
 import com.example.passporter.databinding.RvItemRepoBinding
 
@@ -48,7 +48,7 @@ class RepoRVAdapter(
             binding.repoEntity = repoEntity
             binding.listener = repoListener
 
-            val colorResourceId = if (repoEntity.fork) R.color.card_light_green else R.color.white
+            val colorResourceId = if (repoEntity.fork) R.color.white else R.color.card_light_green
             binding.cardRepo.setCardBackgroundColor(binding.root.context.resources.getColor(colorResourceId))
         }
     }

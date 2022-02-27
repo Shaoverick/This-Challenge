@@ -1,4 +1,4 @@
-package com.example.domain.model.apiModel
+package com.example.apiModel
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,7 +6,7 @@ data class RepoApiModel(
     @SerializedName("name")         val name: String,
     @SerializedName("description")  val description: String?,
     @SerializedName("owner")        val owner: Owner,
-    @SerializedName("fork")         val fork: Boolean,
+    @SerializedName("fork")         val fork: Boolean = false,
     @SerializedName("html_url")     val htmlUrl: String
 
 )

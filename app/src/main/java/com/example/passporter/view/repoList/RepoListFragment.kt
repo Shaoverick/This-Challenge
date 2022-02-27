@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.entity.RepoEntity
-import com.example.domain.model.entity.UrlString
+import com.example.domain.model.RepoEntity
+import com.example.domain.model.UrlString
 import com.example.passporter.EventObserver
 import com.example.passporter.databinding.FragmentRepoListBinding
 import com.example.passporter.view.repoList.adapter.RepoRVAdapter

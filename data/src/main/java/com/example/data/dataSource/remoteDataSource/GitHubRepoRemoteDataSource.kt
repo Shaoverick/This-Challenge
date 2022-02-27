@@ -1,15 +1,15 @@
 package com.example.data.dataSource.remoteDataSource
 
 import com.example.client.awaitToResponse
-import com.example.data.mapper.GitHubRepoMapper
+import com.example.data.mapper.GitHubRepoApiMapper
 import com.example.domain.dataSource.IGitHubRepoDataSource
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.RepoEntity
 import javax.inject.Inject
 
 //This data source is used to get data from GitHub Api through Retrofit client
 class GitHubRepoRemoteDataSource @Inject constructor(
     var service: GitHubRepoService,
-    var mapper: GitHubRepoMapper
+    var mapper: GitHubRepoApiMapper
 ) : IGitHubRepoDataSource {
 
     //region PUBLIC METHODS ------------------------------------------------------------------------

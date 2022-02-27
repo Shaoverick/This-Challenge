@@ -6,8 +6,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.domain.model.entity.RepoEntity
-import com.example.domain.model.entity.UrlString
+import com.example.domain.model.RepoEntity
+import com.example.domain.model.UrlString
 import com.example.passporter.view.repoList.adapter.RepoRVAdapter
 
 @BindingAdapter("addRepoList")

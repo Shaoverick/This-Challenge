@@ -2,7 +2,7 @@ package com.example.domain.useCase.gitHubRepo
 
 import com.example.domain.di.Repository
 import com.example.domain.dataSource.IGitHubRepoDataSource
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.RepoEntity
 import com.example.domain.useCase.UseCase
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
 package com.example.domain.dataSource
 
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.RepoEntity
 
 interface IGitHubRepoDataSource {
 

@@ -2,16 +2,16 @@ package com.example.data.mapper
 
 import com.example.client.exception.ParseException
 import com.example.domain.common.ApiMapper
-import com.example.domain.model.apiModel.Owner
-import com.example.domain.model.apiModel.RepoApiModel
-import com.example.domain.model.entity.OwnerEntity
-import com.example.domain.model.entity.RepoEntity
+import com.example.apiModel.Owner
+import com.example.apiModel.RepoApiModel
+import com.example.domain.model.OwnerEntity
+import com.example.domain.model.RepoEntity
 import javax.inject.Inject
 
-class GitHubRepoMapper @Inject constructor(): ApiMapper<RepoEntity, RepoApiModel> {
+class GitHubRepoApiMapper @Inject constructor(): ApiMapper<RepoEntity, RepoApiModel> {
 
     //region PROPERTIES ----------------------------------------------------------------------------
-    @Inject lateinit var ownerMapper: OwnerMapper
+    @Inject lateinit var ownerMapper: OwnerApiMapper
     //endregion
 
 
@@ -38,7 +38,7 @@ class GitHubRepoMapper @Inject constructor(): ApiMapper<RepoEntity, RepoApiModel
 }
 
 
-class OwnerMapper @Inject constructor(): ApiMapper<OwnerEntity, Owner> {
+class OwnerApiMapper @Inject constructor(): ApiMapper<OwnerEntity, Owner> {
 
     //region PUBLIC METHODS ------------------------------------------------------------------------
     override fun toEntity(apiModel: Owner?): OwnerEntity? {
@@ -53,14 +53,8 @@ class OwnerMapper @Inject constructor(): ApiMapper<OwnerEntity, Owner> {
     }
 
     override fun toApiModel(entity: OwnerEntity?): Owner? {
-        return if (entity != null)
-            Owner(
-                login = entity.login,
-                avatarUrl = entity.avatarUrl,
-                htmlUrl = entity.htmlUrl
-            )
-        else
-            null
+        //Not used
+        TODO("Not yet implemented")
     }
     //endregion
 

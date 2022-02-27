@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.entity.OwnerEntity
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.OwnerEntity
+import com.example.domain.model.RepoEntity
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListParams
 import com.example.domain.useCase.gitHubRepo.GetUserRepoListUC
 import com.example.passporter.Event
@@ -81,7 +81,8 @@ class RepoListVM @Inject constructor(
 
     //For fast mocking purposes
     private fun mock(): List<RepoEntity> {
-        return List(35){RepoEntity(
+        return List(35){
+            RepoEntity(
             name = "nombre del repo",
             description = "descripción del repo",
             ownerEntity = OwnerEntity(
@@ -91,7 +92,8 @@ class RepoListVM @Inject constructor(
             ),
             fork = true,
             htmlUrl = "http://www.google.com"
-        )}
+        )
+        }
     }
 
 }
