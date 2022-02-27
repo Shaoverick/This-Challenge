@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,6 +48,7 @@ class RepoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setApiCallErrorObserver()
+        setDonutProgressObserver()
 
         setLayout()
     }
@@ -88,6 +90,12 @@ class RepoListFragment : Fragment() {
     private fun setApiCallErrorObserver() {
         viewModel.apiCallError.observe(viewLifecycleOwner, EventObserver { errorText ->
             showErrorToast(errorText)
+        })
+    }
+
+    private fun setDonutProgressObserver() {
+        viewModel.donutProgress.observe(viewLifecycleOwner, EventObserver { isDonutProgressVisible ->
+            binding.donutProgress.isVisible = isDonutProgressVisible
         })
     }
     //endregion

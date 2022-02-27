@@ -34,7 +34,10 @@ class RepoListVM @Inject constructor(
     private val _apiCallError = MutableLiveData<Event<String>>()
     val apiCallError: LiveData<Event<String>> = _apiCallError
 
-    private var page = 0
+    private val _progressDonut = MutableLiveData<Event<Boolean>>()
+    val donutProgress: LiveData<Event<Boolean>> = _progressDonut
+
+    private var page = 1
     //endregion
 
 
@@ -45,9 +48,9 @@ class RepoListVM @Inject constructor(
 
     //region PUBLIC METHODS ------------------------------------------------------------------------
     fun getRepoListPage() {
-        page++
-
         viewModelScope.launch {
+            _progressDonut.postValue(Event(true))
+
             val result = withContext(Dispatchers.IO) {
                 getUserRepoListUC.execute(
                     GetUserRepoListParams(
@@ -60,12 +63,16 @@ class RepoListVM @Inject constructor(
 
             result.peekSuccessOrNull()?.let {
                 _repoList.postValue(Event(it))
+                _progressDonut.postValue(Event(false))
+                page++
             }
 
             result.peekFailureOrNull()?.let {
                 _apiCallError.postValue(Event(it.message ?: "Network error"))
+                _progressDonut.postValue(Event(false))
             }
 
+            //For mocking tests
 //            _repoList.postValue(Event(mock()))
         }
     }
@@ -74,7 +81,7 @@ class RepoListVM @Inject constructor(
 
     //For fast mocking purposes
     private fun mock(): List<RepoEntity> {
-        return listOf(RepoEntity(
+        return List(35){RepoEntity(
             name = "nombre del repo",
             description = "descripción del repo",
             ownerEntity = OwnerEntity(
@@ -84,7 +91,7 @@ class RepoListVM @Inject constructor(
             ),
             fork = true,
             htmlUrl = "http://www.google.com"
-        ))
+        )}
     }
 
 }
