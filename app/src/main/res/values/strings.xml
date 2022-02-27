@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Passporter</string>
+    <string name="screen_label">GitHub shaoverick fake repositories</string>
+    <string name="select_where_you_will_to_go">Select where you will to go</string>
+    <string name="view_html_url">View Html url</string>
+    <string name="view_html_owner_url">View Html Owner url</string>
+</resources>
