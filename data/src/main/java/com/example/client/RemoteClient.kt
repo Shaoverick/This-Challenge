@@ -9,7 +9,7 @@ class RemoteClient @Inject constructor() {
 
     //region PROPERTIES ----------------------------------------------------------------------------
     private val retrofit: Retrofit
-    private val baseUrl = "https://api.github.com/"
+    private val baseUrl = "https://api.github.com/" //Should be stored in other place, ie: local.properties file
     //endregion
 
 

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.domain.model.entity.RepoEntity
-import com.example.domain.model.entity.UrlString
+import com.example.domain.model.RepoEntity
+import com.example.domain.model.UrlString
 import com.example.passporter.databinding.DialogWebChooserBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

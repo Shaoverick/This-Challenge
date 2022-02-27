@@ -1,4 +1,4 @@
-package com.example.domain.model.entity
+package com.example.domain.model
 
 typealias UrlString = String
 

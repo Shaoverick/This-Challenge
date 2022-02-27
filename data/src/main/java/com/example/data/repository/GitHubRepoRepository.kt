@@ -2,7 +2,7 @@ package com.example.data.repository
 
 import com.example.domain.di.RemoteDataSource
 import com.example.domain.dataSource.IGitHubRepoDataSource
-import com.example.domain.model.entity.RepoEntity
+import com.example.domain.model.RepoEntity
 import javax.inject.Inject
 
 //Currently, there is no hard reason to have a Repository, because the app has not data persistence in any local data base.
